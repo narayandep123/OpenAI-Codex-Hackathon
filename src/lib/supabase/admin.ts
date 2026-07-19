@@ -14,6 +14,7 @@ interface Database {
           slot_date: string | null;
           slot_time: string | null;
           estimated_cost: number | null;
+          patient_name: string | null;
           status: string;
           created_at: string;
         };
@@ -27,6 +28,7 @@ interface Database {
           slot_date?: string | null;
           slot_time?: string | null;
           estimated_cost?: number | null;
+          patient_name?: string | null;
           status?: string;
           created_at?: string;
         };
@@ -40,6 +42,7 @@ interface Database {
           slot_date?: string | null;
           slot_time?: string | null;
           estimated_cost?: number | null;
+          patient_name?: string | null;
           status?: string;
           created_at?: string;
         };
