@@ -25,7 +25,9 @@ interface ChatMessage {
   role: "user" | "assistant";
   content: string;
   matches?: SearchResult[];
+  hospitalReasons?: Array<{ hospitalId: string; reasons: string[] }>;
   insurancePlans?: Array<InsurancePlan & { matchingHospitalIds?: string[] }>;
+  insuranceInsight?: string;
   symptomSuggestion?: SymptomSuggestion;
   isEmergency?: boolean;
 }
@@ -34,7 +36,9 @@ interface ChatApiResponse {
   error?: string;
   reply: string;
   matches: SearchResult[];
+  hospitalReasons?: Array<{ hospitalId: string; reasons: string[] }>;
   insurancePlans: Array<InsurancePlan & { matchingHospitalIds?: string[] }>;
+  insuranceInsight?: string;
   symptomSuggestion?: SymptomSuggestion;
   isEmergency?: boolean;
 }
@@ -120,7 +124,9 @@ export default function ChatConversation({ compact = false, storageKey }: ChatCo
         role: "assistant",
         content: payload.reply,
         matches: payload.matches,
+        hospitalReasons: payload.hospitalReasons,
         insurancePlans: payload.insurancePlans,
+        insuranceInsight: payload.insuranceInsight,
         symptomSuggestion: payload.symptomSuggestion,
         isEmergency: payload.isEmergency,
       },
@@ -324,6 +330,18 @@ export default function ChatConversation({ compact = false, storageKey }: ChatCo
                         <p className="text-xs text-slate-600">{hospital.city} • <Badge variant="outline">{hospital.type}</Badge></p>
                         <p className="mt-1 text-xs text-amber-700">{createStars(hospital.rating)} {hospital.rating.toFixed(1)}</p>
                         <p className="mt-1 text-xs text-slate-700">{hospital.surgeryName}: {formatCurrency(hospital.minPrice)} - {formatCurrency(hospital.maxPrice)}</p>
+                        {message.hospitalReasons?.find((item) => item.hospitalId === hospital.id)?.reasons?.length ? (
+                          <div className="mt-2 space-y-1 rounded-lg border border-cyan-100 bg-cyan-50/70 p-2">
+                            <p className="text-[11px] font-semibold uppercase tracking-wide text-cyan-800">Why this hospital</p>
+                            {message.hospitalReasons
+                              .find((item) => item.hospitalId === hospital.id)
+                              ?.reasons.map((reason) => (
+                                <p key={`${hospital.id}-${reason}`} className="text-xs text-slate-700">
+                                  • {reason}
+                                </p>
+                              ))}
+                          </div>
+                        ) : null}
                         <Link href={`/hospital/${hospital.id}`} className="mt-2 block">
                           <Button variant="secondary" size="sm">View</Button>
                         </Link>
@@ -336,6 +354,11 @@ export default function ChatConversation({ compact = false, storageKey }: ChatCo
               {message.role === "assistant" && message.insurancePlans?.length ? (
                 <div className="mt-4 space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-900">
                   <p className="font-semibold">Matching Insurance Plans</p>
+                  {message.insuranceInsight ? (
+                    <div className="rounded-lg border border-emerald-300 bg-white/80 p-2 text-xs text-emerald-900">
+                      {message.insuranceInsight}
+                    </div>
+                  ) : null}
                   {message.insurancePlans.map((plan) => (
                     <article key={`${message.id}-${plan.id}`} className="rounded-lg bg-white/70 p-2">
                       <p>{plan.insurerName} - {plan.planName}</p>

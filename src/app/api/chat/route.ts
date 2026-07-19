@@ -41,8 +41,21 @@ interface SymptomMatch {
   reasonSignals?: string[];
 }
 
+interface SymptomRule {
+  surgery: string;
+  specialty: string;
+  patterns: RegExp[];
+  secondaryPatterns?: RegExp[];
+  reasoning: string;
+}
+
 interface InsuranceMatch extends InsurancePlan {
   matchingHospitalIds: string[];
+}
+
+interface HospitalReason {
+  hospitalId: string;
+  reasons: string[];
 }
 
 const normalize = (value: string) => value.trim().toLowerCase();
@@ -126,6 +139,97 @@ const EMERGENCY_REPLY =
 const SYMPTOM_DISCLAIMER =
   "This is not a medical diagnosis. Please consult a licensed doctor to confirm the right treatment for you.";
 
+const SYMPTOM_RULES: SymptomRule[] = [
+  {
+    surgery: "Knee Replacement",
+    specialty: "Orthopedic",
+    patterns: [/knee pain/, /knee hurts?/, /knee hurting/, /stiff knee/, /climb(?:ing)? stairs/, /arthritis/],
+    secondaryPatterns: [/joint pain/, /mobility/, /walking pain/, /knee swelling/],
+    reasoning:
+      "Persistent knee pain with stair-climbing or mobility limitation can be linked to joint degeneration patterns that may need orthopedic evaluation.",
+  },
+  {
+    surgery: "Hip Replacement",
+    specialty: "Orthopedic",
+    patterns: [/hip pain/, /hip stiffness/, /groin pain while walking/, /difficulty walking/],
+    secondaryPatterns: [/reduced range of motion/, /limping/, /joint pain/],
+    reasoning:
+      "Hip pain with stiffness or gait limitation can be associated with structural joint wear and is commonly assessed in orthopedic pathways.",
+  },
+  {
+    surgery: "Spine Decompression",
+    specialty: "Spine / Orthopedic",
+    patterns: [/back pain/, /sciatica/, /radiating pain/, /leg numb/, /tingling in leg/, /nerve pain/],
+    secondaryPatterns: [/slipped disc/, /disc/, /shooting pain/],
+    reasoning:
+      "Back pain with radiating numbness or tingling can indicate possible nerve compression and should be evaluated for spine-focused treatment options.",
+  },
+  {
+    surgery: "Cataract Surgery",
+    specialty: "Ophthalmology",
+    patterns: [/blurred vision/, /cloudy vision/, /night glare/, /vision getting worse/, /difficulty seeing at night/],
+    secondaryPatterns: [/eyesight/, /foggy vision/],
+    reasoning:
+      "Gradual cloudy or blurry vision, especially with glare, is often reviewed by eye specialists to assess lens-related causes and treatment options.",
+  },
+  {
+    surgery: "Appendectomy",
+    specialty: "General Surgery",
+    patterns: [/right lower abdominal pain/, /right side abdominal pain/, /appendix pain/, /pain near navel moving right/],
+    secondaryPatterns: [/abdominal pain/, /nausea/, /loss of appetite/],
+    reasoning:
+      "Localized abdominal pain with digestive discomfort can require prompt general-surgery evaluation to rule out appendiceal causes.",
+  },
+  {
+    surgery: "Gallbladder Removal",
+    specialty: "General Surgery",
+    patterns: [/upper right abdominal pain/, /gallbladder pain/, /pain after fatty food/, /bloating after meals/],
+    secondaryPatterns: [/nausea after meals/, /right side pain/],
+    reasoning:
+      "Recurring upper abdominal discomfort, especially meal-related episodes, can align with gallbladder conditions that need surgical review.",
+  },
+  {
+    surgery: "Hernia Repair",
+    specialty: "General Surgery",
+    patterns: [/groin bulge/, /hernia/, /abdominal bulge/, /pain while lifting/, /strain-related groin pain/],
+    secondaryPatterns: [/bulge gets worse on standing/, /cough strain pain/],
+    reasoning:
+      "A visible bulge with exertion-related pain can be consistent with hernia patterns typically assessed by general surgery.",
+  },
+  {
+    surgery: "Cardiac Bypass",
+    specialty: "Cardiac",
+    patterns: [/chest discomfort on exertion/, /angina/, /blocked arteries/, /cardiac ischemia/],
+    secondaryPatterns: [/palpitation/, /fatigue on walking/, /shortness of breath on exertion/],
+    reasoning:
+      "Exertional chest discomfort patterns can indicate cardiac risk and should be evaluated by a cardiologist to determine the right interventional path.",
+  },
+  {
+    surgery: "Dental Implant",
+    specialty: "Dental / Oral Surgery",
+    patterns: [/missing tooth/, /tooth loss/, /difficulty chewing/, /dental gap/],
+    secondaryPatterns: [/long-term tooth problem/, /oral function issue/],
+    reasoning:
+      "Tooth loss with chewing difficulty can require oral surgery assessment for implant-based restoration options.",
+  },
+  {
+    surgery: "Cesarean Section",
+    specialty: "Obstetrics",
+    patterns: [/pregnan(?:t|cy).*(delivery|birth)/, /previous c[- ]?section/, /planned c[- ]?section/, /baby position breech/],
+    secondaryPatterns: [/labor complications/, /delivery concern/],
+    reasoning:
+      "Pregnancy and delivery-context concerns can require obstetric evaluation to determine whether a cesarean pathway is appropriate.",
+  },
+];
+
+function formatCurrency(value: number): string {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
 function clampConfidence(value: number): number {
   return Math.max(0.35, Math.min(0.95, Number(value.toFixed(2))));
 }
@@ -193,7 +297,7 @@ function inferSymptomSignals(message: string): string[] {
   const signals: string[] = [];
 
   const signalTests: Array<{ pattern: RegExp; label: string }> = [
-    { pattern: /knee|hip|joint|stiff|arthritis|climbing stairs/, label: "Joint and mobility symptoms" },
+    { pattern: /knee|hip|joint|stiff|arthritis|climb(?:ing)? stairs|mobility|walking pain/, label: "Joint and mobility symptoms" },
     { pattern: /vision|blur|cloudy|glare|eyesight/, label: "Vision-related symptoms" },
     { pattern: /stomach|abdominal|belly|right side|nausea/, label: "Abdominal and digestive symptoms" },
     { pattern: /back pain|leg numb|sciatica|tingling/, label: "Spine and nerve symptoms" },
@@ -237,6 +341,7 @@ function buildNoMatchSymptomSuggestion(message: string): SymptomSuggestionPayloa
   const signals = inferSymptomSignals(message);
   const city = inferCityFromText(message);
   const looksRespiratory = /lung|lungs|chest|breath|breathing|cough|wheeze|phlegm/i.test(message);
+  const looksOrthopedic = /knee|joint|hip|stiff|climb(?:ing)? stairs|walking|mobility/i.test(message);
 
   if (looksRespiratory && !signals.includes("Respiratory symptoms")) {
     signals.unshift("Respiratory symptoms");
@@ -247,13 +352,15 @@ function buildNoMatchSymptomSuggestion(message: string): SymptomSuggestionPayloa
   }
 
   return {
-    specialty: looksRespiratory ? "Respiratory / Chest" : "General",
+    specialty: looksRespiratory ? "Respiratory / Chest" : looksOrthopedic ? "Orthopedic" : "General",
     suggestedSurgeries: [],
     reasoning: looksRespiratory
       ? "I understand your concern. Your message sounds like respiratory or chest discomfort, but SurgiFind's current demo catalog does not include a dedicated lung surgery track, so I cannot safely suggest a specific procedure yet."
+      : looksOrthopedic
+        ? "I understand your concern. Your symptoms sound orthopedic, but I still need a clearer procedure target to safely map options from the current catalog."
       : "I understand your concern. I could not confidently map this symptom description to a specific procedure in the current catalog.",
     disclaimer: SYMPTOM_DISCLAIMER,
-    confidence: 0.42,
+    confidence: looksOrthopedic ? 0.56 : 0.42,
     reasonSignals: signals.slice(0, 4),
     confirmPrompt: city
       ? `If you want, I can still help you search hospitals in ${city}. Please tell me a target procedure or use the Search filters.`
@@ -356,147 +463,60 @@ function fallbackClassification(message: string): ChatClassification {
 
 function fallbackSymptomMatch(message: string, surgeryNames: string[]): SymptomMatch | null {
   const text = message.toLowerCase();
-
-  const has = (patterns: RegExp[]) => patterns.some((pattern) => pattern.test(text));
-  const findSurgery = (name: string) =>
-    surgeryNames.find((surgery) => normalize(surgery) === normalize(name));
   const inferredSignals = inferSymptomSignals(message);
+  const hasPersistence = /(since|months|years|chronic|ongoing|persistent)/i.test(message);
 
-  if (
-    has([/knee pain/, /stiff knee/, /climbing stairs/, /joint pain/])
-  ) {
-    const primary = findSurgery("Knee Replacement");
-    const secondary = findSurgery("Arthroscopy") ?? findSurgery("Spine Decompression");
-    const suggestedSurgeries = [primary, secondary].filter((item): item is string => Boolean(item)).slice(0, 2);
+  const canonicalSurgery = (ruleSurgery: string) =>
+    surgeryNames.find((surgery) => normalize(surgery) === normalize(ruleSurgery));
 
-    if (suggestedSurgeries.length > 0) {
+  const scored = SYMPTOM_RULES
+    .map((rule) => {
+      let score = 0;
+
+      for (const pattern of rule.patterns) {
+        if (pattern.test(text)) {
+          score += 2;
+        }
+      }
+
+      for (const pattern of rule.secondaryPatterns ?? []) {
+        if (pattern.test(text)) {
+          score += 1;
+        }
+      }
+
+      if (hasPersistence) {
+        score += 0.5;
+      }
+
       return {
-        specialty: "Orthopedic",
-        suggestedSurgeries,
-        reasoning:
-          "Persistent knee pain and movement-related discomfort can be linked to joint wear or structural issues that may need orthopedic evaluation.",
-        confidence: 0.83,
-        reasonSignals: inferredSignals,
+        rule,
+        canonical: canonicalSurgery(rule.surgery),
+        score,
       };
-    }
+    })
+    .filter((entry) => Boolean(entry.canonical) && entry.score >= 2)
+    .sort((a, b) => b.score - a.score);
+
+  if (scored.length === 0) {
+    return null;
   }
 
-  if (
-    has([/blurred vision/, /cloudy vision/, /night glare/, /vision problem/])
-  ) {
-    const primary = findSurgery("Cataract Surgery");
-    if (primary) {
-      return {
-        specialty: "Ophthalmology",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "Gradual cloudy or blurry vision is commonly evaluated by eye specialists to rule out lens-related causes and treatment options.",
-        confidence: 0.82,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
+  const primary = scored[0];
+  const secondary = scored.find((entry) => entry.rule.surgery !== primary.rule.surgery);
+  const suggestedSurgeries = [primary.canonical, secondary?.canonical]
+    .filter((item): item is string => Boolean(item))
+    .slice(0, 2);
 
-  if (
-    has([/abdominal pain/, /right side pain/, /stomach pain/, /nausea/])
-  ) {
-    const primary = findSurgery("Appendectomy");
-    const secondary = findSurgery("Gallbladder Removal");
-    const suggestedSurgeries = [primary, secondary].filter((item): item is string => Boolean(item)).slice(0, 2);
+  const normalizedConfidence = clampConfidence(Math.min(0.9, 0.55 + primary.score * 0.08));
 
-    if (suggestedSurgeries.length > 0) {
-      return {
-        specialty: "General Surgery",
-        suggestedSurgeries,
-        reasoning:
-          "Ongoing abdominal pain with digestive discomfort can require general-surgery evaluation to identify the underlying condition and treatment path.",
-        confidence: 0.78,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  if (
-    has([/back pain/, /leg numb/, /sciatica/, /tingling in leg/])
-  ) {
-    const primary = findSurgery("Spine Decompression");
-    if (primary) {
-      return {
-        specialty: "Spine / Orthopedic",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "Back pain with radiating numbness or tingling is often assessed for possible nerve compression and spine-related treatment options.",
-        confidence: 0.79,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  if (
-    has([/groin bulge/, /hernia/, /lifting pain/, /abdominal wall/])
-  ) {
-    const primary = findSurgery("Hernia Repair");
-    if (primary) {
-      return {
-        specialty: "General Surgery",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "A groin or abdominal bulge with strain-related pain can be consistent with hernia patterns that are commonly assessed by general surgery.",
-        confidence: 0.76,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  if (
-    has([/hip pain/, /difficulty walking/, /hip stiffness/])
-  ) {
-    const primary = findSurgery("Hip Replacement");
-    if (primary) {
-      return {
-        specialty: "Orthopedic",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "Persistent hip pain with mobility limitation is often evaluated for joint degeneration and possible orthopedic treatment pathways.",
-        confidence: 0.77,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  if (
-    has([/tooth pain/, /missing tooth/, /chewing problem/, /gum issue/])
-  ) {
-    const primary = findSurgery("Dental Implant");
-    if (primary) {
-      return {
-        specialty: "Dental / Oral Surgery",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "Tooth loss or chronic dental function issues can require oral surgery evaluation for implant-based restoration options.",
-        confidence: 0.74,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  if (
-    has([/chest discomfort/, /breathless on exertion/, /palpitation/, /cardiac/])
-  ) {
-    const primary = findSurgery("Cardiac Bypass");
-    if (primary) {
-      return {
-        specialty: "Cardiac",
-        suggestedSurgeries: [primary],
-        reasoning:
-          "Persistent exertional chest discomfort can indicate cardiac risk that should be evaluated by a cardiologist to determine if an interventional pathway is needed.",
-        confidence: 0.62,
-        reasonSignals: inferredSignals,
-      };
-    }
-  }
-
-  return null;
+  return {
+    specialty: primary.rule.specialty,
+    suggestedSurgeries,
+    reasoning: primary.rule.reasoning,
+    confidence: normalizedConfidence,
+    reasonSignals: inferredSignals,
+  };
 }
 
 function insuranceRequested(messages: ChatMessage[]): boolean {
@@ -619,6 +639,81 @@ function getInsuranceMatches(
     .slice(0, 3);
 
   return matches;
+}
+
+function buildHospitalReasons(intent: ChatIntent, hospitals: SearchResult[]): HospitalReason[] {
+  return hospitals.map((hospital) => {
+    const reasons: string[] = [];
+
+    reasons.push(`Rated ${hospital.rating.toFixed(1)} with strong patient trust signals.`);
+
+    if (intent.surgeryType && normalize(intent.surgeryType) === normalize(hospital.surgeryName)) {
+      reasons.push(`Direct specialty match for ${hospital.surgeryName}.`);
+    }
+
+    if (intent.maxBudget) {
+      if (hospital.minPrice <= intent.maxBudget) {
+        reasons.push(`Starts within your budget (${formatCurrency(intent.maxBudget)}).`);
+      } else {
+        reasons.push(`Slightly above your budget, shown as a quality comparison option.`);
+      }
+    }
+
+    if (intent.city && normalize(intent.city) === normalize(hospital.city)) {
+      reasons.push(`Located in your preferred city (${hospital.city}).`);
+    }
+
+    return { hospitalId: hospital.id, reasons: reasons.slice(0, 3) };
+  });
+}
+
+function buildInsuranceInsight(hospitals: SearchResult[], insuranceMatches: InsuranceMatch[]): string | undefined {
+  if (hospitals.length === 0) {
+    return undefined;
+  }
+
+  const avgCost = (hospital: SearchResult) => (hospital.minPrice + hospital.maxPrice) / 2;
+
+  const cheapestOverall = hospitals.reduce((best, current) =>
+    avgCost(current) < avgCost(best) ? current : best,
+  );
+
+  const inNetwork = hospitals
+    .map((hospital) => {
+      const plans = insuranceMatches.filter((plan) => plan.matchingHospitalIds.includes(hospital.id));
+      if (plans.length === 0) {
+        return null;
+      }
+
+      const bestPlan = plans.reduce((best, current) =>
+        current.coverageCap > best.coverageCap ? current : best,
+      );
+
+      const expectedOutOfPocket = Math.max(0, avgCost(hospital) - bestPlan.coverageCap);
+
+      return {
+        hospital,
+        bestPlan,
+        expectedOutOfPocket,
+      };
+    })
+    .filter((item): item is { hospital: SearchResult; bestPlan: InsuranceMatch; expectedOutOfPocket: number } => Boolean(item));
+
+  if (inNetwork.length === 0) {
+    return "Insurance insight: none of the shortlisted hospitals are in-network for the matched plans, so expected out-of-pocket remains close to full treatment cost.";
+  }
+
+  const bestInNetwork = inNetwork.reduce((best, current) =>
+    current.expectedOutOfPocket < best.expectedOutOfPocket ? current : best,
+  );
+
+  const cheapestIsInNetwork = inNetwork.some((item) => item.hospital.id === cheapestOverall.id);
+
+  if (!cheapestIsInNetwork && bestInNetwork.hospital.id !== cheapestOverall.id) {
+    return `Insurance insight: ${cheapestOverall.name} looks cheaper upfront (${formatCurrency(avgCost(cheapestOverall))} avg), but it is out of network for matched plans. ${bestInNetwork.hospital.name} may result in lower out-of-pocket (estimated ${formatCurrency(bestInNetwork.expectedOutOfPocket)}) with ${bestInNetwork.bestPlan.planName}.`;
+  }
+
+  return `Insurance insight: ${bestInNetwork.hospital.name} appears strongest for coverage with ${bestInNetwork.bestPlan.planName}, with estimated out-of-pocket around ${formatCurrency(bestInNetwork.expectedOutOfPocket)}.`;
 }
 
 function fallbackReply(
@@ -894,8 +989,10 @@ async function runSearchFlow(params: {
         "Hello! I can help you find and compare hospitals for surgery. Tell me the surgery you need, your city, and any budget or rating preference.",
       intent,
       matches: [] as SearchResult[],
+      hospitalReasons: [] as HospitalReason[],
       insuranceChecked: false,
       insurancePlans: [] as InsuranceMatch[],
+      insuranceInsight: undefined as string | undefined,
     };
   }
 
@@ -910,11 +1007,15 @@ async function runSearchFlow(params: {
   const shouldCheckInsurance = insuranceRequested(messages);
 
   let insuranceMatches: InsuranceMatch[] = [];
+  let insuranceInsight: string | undefined;
 
   if (shouldCheckInsurance) {
     const plans = await getInsurancePlans();
     insuranceMatches = getInsuranceMatches(plans, intent.surgeryType, topMatches);
+    insuranceInsight = buildInsuranceInsight(topMatches, insuranceMatches);
   }
+
+  const hospitalReasons = buildHospitalReasons(intent, topMatches);
 
   let reply = fallbackReply(intent, topMatches, insuranceMatches, shouldCheckInsurance);
 
@@ -928,8 +1029,16 @@ async function runSearchFlow(params: {
         insuranceMatches,
         shouldCheckInsurance,
       );
+
+      if (shouldCheckInsurance && insuranceInsight) {
+        reply = `${reply}\n\n${insuranceInsight}`;
+      }
     } catch {
       reply = fallbackReply(intent, topMatches, insuranceMatches, shouldCheckInsurance);
+
+      if (shouldCheckInsurance && insuranceInsight) {
+        reply = `${reply}\n\n${insuranceInsight}`;
+      }
     }
   }
 
@@ -937,8 +1046,10 @@ async function runSearchFlow(params: {
     reply,
     intent,
     matches: topMatches,
+    hospitalReasons,
     insuranceChecked: shouldCheckInsurance,
     insurancePlans: insuranceMatches,
+    insuranceInsight,
   };
 }
 
@@ -1006,8 +1117,10 @@ export async function POST(request: NextRequest) {
         "No problem. Please rephrase your symptoms, or tell me a surgery name, city, budget, and rating preference to continue with a direct search.",
       intent: {},
       matches: [],
+      hospitalReasons: [],
       insuranceChecked: false,
       insurancePlans: [],
+      insuranceInsight: undefined,
     });
   }
 
@@ -1056,13 +1169,22 @@ export async function POST(request: NextRequest) {
     classification = fallbackClassification(latestUser.content);
   }
 
+  if (classification.kind === "general") {
+    const fallback = fallbackClassification(latestUser.content);
+    if (fallback.kind === "symptom") {
+      classification = fallback;
+    }
+  }
+
   if (classification.kind === "emergency" || hasEmergencySignals(latestUser.content)) {
     return NextResponse.json({
       reply: EMERGENCY_REPLY,
       intent: {},
       matches: [],
+      hospitalReasons: [],
       insuranceChecked: false,
       insurancePlans: [],
+      insuranceInsight: undefined,
       isEmergency: true,
     });
   }
@@ -1090,11 +1212,13 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         reply:
-          `${noMatchSuggestion.reasoning}\n\n${noMatchSuggestion.confirmPrompt}`,
+          "I added a cautious symptom summary below. Please review it and use Search filters or tell me a likely procedure to continue.",
         intent: {},
         matches: [],
+        hospitalReasons: [],
         insuranceChecked: false,
         insurancePlans: [],
+        insuranceInsight: undefined,
         symptomSuggestion: noMatchSuggestion,
       });
     }
@@ -1102,11 +1226,14 @@ export async function POST(request: NextRequest) {
     const suggestionPayload = buildSymptomSuggestionPayload(symptomMatch);
 
     return NextResponse.json({
-      reply: `${suggestionPayload.reasoning}\n\n${suggestionPayload.confirmPrompt}`,
+      reply:
+        "I found a possible non-diagnostic match. Please review the suggestion card below and confirm if you want hospital options.",
       intent: {},
       matches: [],
+      hospitalReasons: [],
       insuranceChecked: false,
       insurancePlans: [],
+      insuranceInsight: undefined,
       symptomSuggestion: suggestionPayload,
     });
   }
