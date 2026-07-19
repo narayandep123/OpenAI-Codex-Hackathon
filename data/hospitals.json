@@ -1,0 +1,356 @@
+[
+  {
+    "id": "H001",
+    "name": "Aarogya Super Specialty Hospital",
+    "city": "Delhi",
+    "address": "Sector 18, Dwarka, New Delhi",
+    "type": "multi-specialty",
+    "rating": 4.6,
+    "image": "https://placehold.co/800x500?text=Aarogya+Delhi",
+    "surgeries": [
+      { "name": "Knee Replacement", "minPrice": 210000, "maxPrice": 390000 },
+      { "name": "Hip Replacement", "minPrice": 230000, "maxPrice": 420000 },
+      { "name": "Cardiac Bypass", "minPrice": 260000, "maxPrice": 560000 },
+      { "name": "Hernia Repair", "minPrice": 65000, "maxPrice": 145000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-22", "time": "10:00 AM" },
+      { "date": "2026-07-23", "time": "03:30 PM" },
+      { "date": "2026-07-25", "time": "11:15 AM" }
+    ]
+  },
+  {
+    "id": "H002",
+    "name": "Lotus Care Hospital",
+    "city": "Delhi",
+    "address": "Lajpat Nagar III, New Delhi",
+    "type": "standard",
+    "rating": 4.2,
+    "image": "https://placehold.co/800x500?text=Lotus+Care+Delhi",
+    "surgeries": [
+      { "name": "Appendectomy", "minPrice": 70000, "maxPrice": 130000 },
+      { "name": "Gallbladder Removal", "minPrice": 85000, "maxPrice": 170000 },
+      { "name": "Hernia Repair", "minPrice": 60000, "maxPrice": 130000 },
+      { "name": "Cesarean Section", "minPrice": 90000, "maxPrice": 185000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "09:45 AM" },
+      { "date": "2026-07-24", "time": "01:00 PM" },
+      { "date": "2026-07-27", "time": "04:30 PM" }
+    ]
+  },
+  {
+    "id": "H003",
+    "name": "Metro Heart & Ortho Institute",
+    "city": "Delhi",
+    "address": "Saket District Centre, New Delhi",
+    "type": "multi-specialty",
+    "rating": 4.7,
+    "image": "https://placehold.co/800x500?text=Metro+Heart+Delhi",
+    "surgeries": [
+      { "name": "Cardiac Bypass", "minPrice": 300000, "maxPrice": 590000 },
+      { "name": "Knee Replacement", "minPrice": 240000, "maxPrice": 430000 },
+      { "name": "Spine Decompression", "minPrice": 220000, "maxPrice": 510000 },
+      { "name": "Hip Replacement", "minPrice": 250000, "maxPrice": 470000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "12:00 PM" },
+      { "date": "2026-07-23", "time": "10:30 AM" },
+      { "date": "2026-07-26", "time": "05:00 PM" }
+    ]
+  },
+  {
+    "id": "H004",
+    "name": "Shanti Eye & Daycare",
+    "city": "Delhi",
+    "address": "Karol Bagh, New Delhi",
+    "type": "standard",
+    "rating": 4.1,
+    "image": "https://placehold.co/800x500?text=Shanti+Eye+Delhi",
+    "surgeries": [
+      { "name": "Cataract Surgery", "minPrice": 28000, "maxPrice": 85000 },
+      { "name": "Dental Implant", "minPrice": 35000, "maxPrice": 90000 },
+      { "name": "Hernia Repair", "minPrice": 55000, "maxPrice": 120000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "11:00 AM" },
+      { "date": "2026-07-22", "time": "02:15 PM" },
+      { "date": "2026-07-24", "time": "10:00 AM" }
+    ]
+  },
+  {
+    "id": "H005",
+    "name": "CityCare Medical Center",
+    "city": "Delhi",
+    "address": "Mayur Vihar Phase 1, Delhi",
+    "type": "multi-specialty",
+    "rating": 4.4,
+    "image": "https://placehold.co/800x500?text=CityCare+Delhi",
+    "surgeries": [
+      { "name": "Appendectomy", "minPrice": 75000, "maxPrice": 150000 },
+      { "name": "Gallbladder Removal", "minPrice": 90000, "maxPrice": 190000 },
+      { "name": "Cesarean Section", "minPrice": 95000, "maxPrice": 210000 },
+      { "name": "Spine Decompression", "minPrice": 210000, "maxPrice": 500000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-22", "time": "09:30 AM" },
+      { "date": "2026-07-25", "time": "12:45 PM" },
+      { "date": "2026-07-28", "time": "03:00 PM" }
+    ]
+  },
+  {
+    "id": "H006",
+    "name": "BlueCross Hospital",
+    "city": "Delhi",
+    "address": "Rohini Sector 10, Delhi",
+    "type": "standard",
+    "rating": 3.9,
+    "image": "https://placehold.co/800x500?text=BlueCross+Delhi",
+    "surgeries": [
+      { "name": "Appendectomy", "minPrice": 65000, "maxPrice": 120000 },
+      { "name": "Hernia Repair", "minPrice": 50000, "maxPrice": 110000 },
+      { "name": "Gallbladder Removal", "minPrice": 80000, "maxPrice": 155000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "04:00 PM" },
+      { "date": "2026-07-23", "time": "10:15 AM" },
+      { "date": "2026-07-27", "time": "01:30 PM" }
+    ]
+  },
+  {
+    "id": "H007",
+    "name": "Namma Health MultiCare",
+    "city": "Bangalore",
+    "address": "Indiranagar 100 Feet Road, Bengaluru",
+    "type": "multi-specialty",
+    "rating": 4.8,
+    "image": "https://placehold.co/800x500?text=Namma+Health+Bangalore",
+    "surgeries": [
+      { "name": "Knee Replacement", "minPrice": 220000, "maxPrice": 410000 },
+      { "name": "Hip Replacement", "minPrice": 245000, "maxPrice": 465000 },
+      { "name": "Cardiac Bypass", "minPrice": 280000, "maxPrice": 580000 },
+      { "name": "Spine Decompression", "minPrice": 230000, "maxPrice": 520000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "10:20 AM" },
+      { "date": "2026-07-24", "time": "02:00 PM" },
+      { "date": "2026-07-26", "time": "06:00 PM" }
+    ]
+  },
+  {
+    "id": "H008",
+    "name": "Green Valley Hospital",
+    "city": "Bangalore",
+    "address": "Jayanagar 4th Block, Bengaluru",
+    "type": "standard",
+    "rating": 4.0,
+    "image": "https://placehold.co/800x500?text=Green+Valley+Bangalore",
+    "surgeries": [
+      { "name": "Cataract Surgery", "minPrice": 30000, "maxPrice": 95000 },
+      { "name": "Appendectomy", "minPrice": 68000, "maxPrice": 125000 },
+      { "name": "Dental Implant", "minPrice": 32000, "maxPrice": 85000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "11:40 AM" },
+      { "date": "2026-07-22", "time": "03:20 PM" },
+      { "date": "2026-07-25", "time": "09:00 AM" }
+    ]
+  },
+  {
+    "id": "H009",
+    "name": "Orchid Surgical Centre",
+    "city": "Bangalore",
+    "address": "Whitefield Main Road, Bengaluru",
+    "type": "multi-specialty",
+    "rating": 4.5,
+    "image": "https://placehold.co/800x500?text=Orchid+Surgical+Bangalore",
+    "surgeries": [
+      { "name": "Gallbladder Removal", "minPrice": 95000, "maxPrice": 200000 },
+      { "name": "Hernia Repair", "minPrice": 65000, "maxPrice": 140000 },
+      { "name": "Cesarean Section", "minPrice": 100000, "maxPrice": 230000 },
+      { "name": "Appendectomy", "minPrice": 72000, "maxPrice": 140000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "01:30 PM" },
+      { "date": "2026-07-23", "time": "10:45 AM" },
+      { "date": "2026-07-28", "time": "04:15 PM" }
+    ]
+  },
+  {
+    "id": "H010",
+    "name": "Silicon City Hospital",
+    "city": "Bangalore",
+    "address": "Electronic City Phase 1, Bengaluru",
+    "type": "multi-specialty",
+    "rating": 4.3,
+    "image": "https://placehold.co/800x500?text=Silicon+City+Bangalore",
+    "surgeries": [
+      { "name": "Knee Replacement", "minPrice": 205000, "maxPrice": 380000 },
+      { "name": "Spine Decompression", "minPrice": 215000, "maxPrice": 490000 },
+      { "name": "Cardiac Bypass", "minPrice": 270000, "maxPrice": 550000 },
+      { "name": "Dental Implant", "minPrice": 38000, "maxPrice": 100000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-22", "time": "08:50 AM" },
+      { "date": "2026-07-24", "time": "01:10 PM" },
+      { "date": "2026-07-29", "time": "05:20 PM" }
+    ]
+  },
+  {
+    "id": "H011",
+    "name": "Cauvery Women & Child Hospital",
+    "city": "Bangalore",
+    "address": "Hebbal Outer Ring Road, Bengaluru",
+    "type": "standard",
+    "rating": 4.1,
+    "image": "https://placehold.co/800x500?text=Cauvery+Women+Bangalore",
+    "surgeries": [
+      { "name": "Cesarean Section", "minPrice": 85000, "maxPrice": 195000 },
+      { "name": "Gallbladder Removal", "minPrice": 88000, "maxPrice": 165000 },
+      { "name": "Hernia Repair", "minPrice": 55000, "maxPrice": 125000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "02:20 PM" },
+      { "date": "2026-07-23", "time": "09:40 AM" },
+      { "date": "2026-07-26", "time": "12:10 PM" }
+    ]
+  },
+  {
+    "id": "H012",
+    "name": "Precision Ortho & Eye Clinic",
+    "city": "Bangalore",
+    "address": "Koramangala 5th Block, Bengaluru",
+    "type": "standard",
+    "rating": 3.8,
+    "image": "https://placehold.co/800x500?text=Precision+Clinic+Bangalore",
+    "surgeries": [
+      { "name": "Cataract Surgery", "minPrice": 26000, "maxPrice": 78000 },
+      { "name": "Knee Replacement", "minPrice": 190000, "maxPrice": 345000 },
+      { "name": "Dental Implant", "minPrice": 30000, "maxPrice": 76000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "09:10 AM" },
+      { "date": "2026-07-24", "time": "03:40 PM" },
+      { "date": "2026-07-27", "time": "11:50 AM" }
+    ]
+  },
+  {
+    "id": "H013",
+    "name": "Seaside Medical Institute",
+    "city": "Mumbai",
+    "address": "Andheri West, Mumbai",
+    "type": "multi-specialty",
+    "rating": 4.6,
+    "image": "https://placehold.co/800x500?text=Seaside+Mumbai",
+    "surgeries": [
+      { "name": "Cardiac Bypass", "minPrice": 310000, "maxPrice": 600000 },
+      { "name": "Hip Replacement", "minPrice": 255000, "maxPrice": 480000 },
+      { "name": "Knee Replacement", "minPrice": 235000, "maxPrice": 420000 },
+      { "name": "Spine Decompression", "minPrice": 240000, "maxPrice": 540000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-22", "time": "10:35 AM" },
+      { "date": "2026-07-25", "time": "02:30 PM" },
+      { "date": "2026-07-30", "time": "05:45 PM" }
+    ]
+  },
+  {
+    "id": "H014",
+    "name": "HarborCare Hospital",
+    "city": "Mumbai",
+    "address": "Navi Mumbai, Vashi",
+    "type": "standard",
+    "rating": 4.0,
+    "image": "https://placehold.co/800x500?text=HarborCare+Mumbai",
+    "surgeries": [
+      { "name": "Appendectomy", "minPrice": 75000, "maxPrice": 135000 },
+      { "name": "Gallbladder Removal", "minPrice": 92000, "maxPrice": 175000 },
+      { "name": "Hernia Repair", "minPrice": 62000, "maxPrice": 130000 },
+      { "name": "Cesarean Section", "minPrice": 95000, "maxPrice": 200000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "08:30 AM" },
+      { "date": "2026-07-23", "time": "12:20 PM" },
+      { "date": "2026-07-26", "time": "04:50 PM" }
+    ]
+  },
+  {
+    "id": "H015",
+    "name": "Marine Drive Surgical Hub",
+    "city": "Mumbai",
+    "address": "Churchgate, Mumbai",
+    "type": "multi-specialty",
+    "rating": 4.7,
+    "image": "https://placehold.co/800x500?text=Marine+Drive+Mumbai",
+    "surgeries": [
+      { "name": "Cataract Surgery", "minPrice": 32000, "maxPrice": 110000 },
+      { "name": "Cardiac Bypass", "minPrice": 290000, "maxPrice": 570000 },
+      { "name": "Gallbladder Removal", "minPrice": 98000, "maxPrice": 210000 },
+      { "name": "Dental Implant", "minPrice": 42000, "maxPrice": 110000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "11:25 AM" },
+      { "date": "2026-07-24", "time": "01:55 PM" },
+      { "date": "2026-07-29", "time": "06:10 PM" }
+    ]
+  },
+  {
+    "id": "H016",
+    "name": "Sunrise Joint & Bone Center",
+    "city": "Mumbai",
+    "address": "Powai, Mumbai",
+    "type": "standard",
+    "rating": 3.9,
+    "image": "https://placehold.co/800x500?text=Sunrise+Joint+Mumbai",
+    "surgeries": [
+      { "name": "Knee Replacement", "minPrice": 200000, "maxPrice": 360000 },
+      { "name": "Hip Replacement", "minPrice": 215000, "maxPrice": 410000 },
+      { "name": "Hernia Repair", "minPrice": 58000, "maxPrice": 118000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-21", "time": "09:55 AM" },
+      { "date": "2026-07-25", "time": "03:05 PM" },
+      { "date": "2026-07-28", "time": "12:35 PM" }
+    ]
+  },
+  {
+    "id": "H017",
+    "name": "Mumbai Central MultiCare",
+    "city": "Mumbai",
+    "address": "Dadar East, Mumbai",
+    "type": "multi-specialty",
+    "rating": 4.4,
+    "image": "https://placehold.co/800x500?text=Central+MultiCare+Mumbai",
+    "surgeries": [
+      { "name": "Appendectomy", "minPrice": 82000, "maxPrice": 150000 },
+      { "name": "Cesarean Section", "minPrice": 105000, "maxPrice": 230000 },
+      { "name": "Spine Decompression", "minPrice": 235000, "maxPrice": 520000 },
+      { "name": "Gallbladder Removal", "minPrice": 100000, "maxPrice": 200000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-22", "time": "10:50 AM" },
+      { "date": "2026-07-27", "time": "02:40 PM" },
+      { "date": "2026-07-30", "time": "04:25 PM" }
+    ]
+  },
+  {
+    "id": "H018",
+    "name": "WellNest Day Surgery",
+    "city": "Mumbai",
+    "address": "Borivali West, Mumbai",
+    "type": "standard",
+    "rating": 4.2,
+    "image": "https://placehold.co/800x500?text=WellNest+Mumbai",
+    "surgeries": [
+      { "name": "Cataract Surgery", "minPrice": 27000, "maxPrice": 90000 },
+      { "name": "Dental Implant", "minPrice": 34000, "maxPrice": 88000 },
+      { "name": "Hernia Repair", "minPrice": 60000, "maxPrice": 125000 },
+      { "name": "Appendectomy", "minPrice": 70000, "maxPrice": 128000 }
+    ],
+    "availableSlots": [
+      { "date": "2026-07-20", "time": "12:30 PM" },
+      { "date": "2026-07-23", "time": "09:20 AM" },
+      { "date": "2026-07-26", "time": "03:35 PM" }
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "I001",
+    "insurerName": "CareSure Health",
+    "planName": "Smart Surgical Shield",
+    "coverageCap": 300000,
+    "premiumPerYear": 18500,
+    "coveredSurgeries": [
+      "Appendectomy",
+      "Gallbladder Removal",
+      "Hernia Repair",
+      "Cesarean Section",
+      "Cataract Surgery"
+    ],
+    "networkHospitalIds": ["H002", "H004", "H005", "H008", "H009", "H011", "H014", "H018"]
+  },
+  {
+    "id": "I002",
+    "insurerName": "NivaWell Insurance",
+    "planName": "Ortho Plus Protect",
+    "coverageCap": 500000,
+    "premiumPerYear": 26500,
+    "coveredSurgeries": [
+      "Knee Replacement",
+      "Hip Replacement",
+      "Spine Decompression",
+      "Hernia Repair",
+      "Dental Implant"
+    ],
+    "networkHospitalIds": ["H001", "H003", "H007", "H010", "H012", "H013", "H016", "H017"]
+  },
+  {
+    "id": "I003",
+    "insurerName": "Bharat Mediclaim",
+    "planName": "Family Comprehensive Gold",
+    "coverageCap": 700000,
+    "premiumPerYear": 34900,
+    "coveredSurgeries": [
+      "Cardiac Bypass",
+      "Knee Replacement",
+      "Hip Replacement",
+      "Cesarean Section",
+      "Appendectomy",
+      "Gallbladder Removal"
+    ],
+    "networkHospitalIds": ["H001", "H003", "H005", "H007", "H010", "H013", "H015", "H017"]
+  },
+  {
+    "id": "I004",
+    "insurerName": "SecureLife Health",
+    "planName": "Senior Care Elite",
+    "coverageCap": 450000,
+    "premiumPerYear": 31200,
+    "coveredSurgeries": [
+      "Cardiac Bypass",
+      "Cataract Surgery",
+      "Knee Replacement",
+      "Gallbladder Removal",
+      "Hernia Repair"
+    ],
+    "networkHospitalIds": ["H001", "H004", "H006", "H007", "H013", "H015", "H018"]
+  },
+  {
+    "id": "I005",
+    "insurerName": "ArogyaOne",
+    "planName": "Metro Max Cover",
+    "coverageCap": 1000000,
+    "premiumPerYear": 49800,
+    "coveredSurgeries": [
+      "Cardiac Bypass",
+      "Spine Decompression",
+      "Knee Replacement",
+      "Hip Replacement",
+      "Cesarean Section",
+      "Cataract Surgery",
+      "Dental Implant"
+    ],
+    "networkHospitalIds": ["H001", "H003", "H007", "H009", "H010", "H013", "H015", "H017", "H018"]
+  }
+]

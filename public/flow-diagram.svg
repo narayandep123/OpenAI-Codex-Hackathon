@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" width="1100" height="820" font-family="Inter, Segoe UI, sans-serif">
+  <!-- Background -->
+  <rect width="1100" height="820" fill="#f8fafc" rx="16"/>
+
+  <!-- Title -->
+  <text x="550" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">SurgiFind — Complete Application Flow</text>
+  <text x="550" y="62" text-anchor="middle" font-size="12" fill="#64748b">Next.js App Router · React · TypeScript · Tailwind CSS</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ROW 1: Entry points -->
+  <!-- Landing Page -->
+  <rect x="390" y="90" width="160" height="52" rx="10" fill="#05aba5" stroke="#04938e" stroke-width="1.5"/>
+  <text x="470" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="white">Landing Page</text>
+  <text x="470" y="128" text-anchor="middle" font-size="11" fill="#ccf3f2">/</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ROW 2: Primary routes -->
+  <!-- /search -->
+  <rect x="60" y="210" width="150" height="52" rx="10" fill="#0f766e" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="135" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="white">Search Page</text>
+  <text x="135" y="248" text-anchor="middle" font-size="11" fill="#99e6e2">/search</text>
+
+  <!-- /chat -->
+  <rect x="260" y="210" width="150" height="52" rx="10" fill="#0f766e" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="335" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="white">Chat Assistant</text>
+  <text x="335" y="248" text-anchor="middle" font-size="11" fill="#99e6e2">/chat</text>
+
+  <!-- /insurance -->
+  <rect x="460" y="210" width="150" height="52" rx="10" fill="#0f766e" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="535" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="white">Insurance</text>
+  <text x="535" y="248" text-anchor="middle" font-size="11" fill="#99e6e2">/insurance</text>
+
+  <!-- /bookings -->
+  <rect x="660" y="210" width="150" height="52" rx="10" fill="#0f766e" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="735" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="white">My Bookings</text>
+  <text x="735" y="248" text-anchor="middle" font-size="11" fill="#99e6e2">/bookings</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ROW 3: Detail / API -->
+  <!-- /hospital/[id] -->
+  <rect x="60" y="360" width="160" height="52" rx="10" fill="#1e40af" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="140" y="382" text-anchor="middle" font-size="12" font-weight="700" fill="white">Hospital Detail</text>
+  <text x="140" y="398" text-anchor="middle" font-size="11" fill="#bfdbfe">/hospital/[id]</text>
+
+  <!-- /api/search -->
+  <rect x="260" y="360" width="160" height="52" rx="10" fill="#6d28d9" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="340" y="382" text-anchor="middle" font-size="12" font-weight="700" fill="white">API: Search</text>
+  <text x="340" y="398" text-anchor="middle" font-size="11" fill="#ddd6fe">/api/search</text>
+
+  <!-- /api/chat -->
+  <rect x="460" y="360" width="160" height="52" rx="10" fill="#6d28d9" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="540" y="382" text-anchor="middle" font-size="12" font-weight="700" fill="white">API: Chat</text>
+  <text x="540" y="398" text-anchor="middle" font-size="11" fill="#ddd6fe">/api/chat</text>
+
+  <!-- /api/book -->
+  <rect x="660" y="360" width="160" height="52" rx="10" fill="#6d28d9" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="740" y="382" text-anchor="middle" font-size="12" font-weight="700" fill="white">API: Book</text>
+  <text x="740" y="398" text-anchor="middle" font-size="11" fill="#ddd6fe">/api/book</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ROW 4: Data Layer -->
+  <!-- hospitals.json -->
+  <rect x="60" y="500" width="155" height="52" rx="10" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="138" y="522" text-anchor="middle" font-size="12" font-weight="700" fill="white">hospitals.json</text>
+  <text x="138" y="538" text-anchor="middle" font-size="11" fill="#fde68a">data/</text>
+
+  <!-- surgeries.json -->
+  <rect x="250" y="500" width="155" height="52" rx="10" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="328" y="522" text-anchor="middle" font-size="12" font-weight="700" fill="white">surgeries.json</text>
+  <text x="328" y="538" text-anchor="middle" font-size="11" fill="#fde68a">data/</text>
+
+  <!-- insurance.json -->
+  <rect x="440" y="500" width="155" height="52" rx="10" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="518" y="522" text-anchor="middle" font-size="12" font-weight="700" fill="white">insurance.json</text>
+  <text x="518" y="538" text-anchor="middle" font-size="11" fill="#fde68a">data/</text>
+
+  <!-- OpenAI / Fallback -->
+  <rect x="630" y="500" width="190" height="52" rx="10" fill="#065f46" stroke="#10b981" stroke-width="1.5"/>
+  <text x="725" y="522" text-anchor="middle" font-size="12" font-weight="700" fill="white">OpenAI SDK</text>
+  <text x="725" y="538" text-anchor="middle" font-size="11" fill="#a7f3d0">+ Heuristic Fallback</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ROW 5: Shared UI -->
+  <rect x="60" y="640" width="860" height="52" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="490" y="659" text-anchor="middle" font-size="12" font-weight="700" fill="white">Shared UI Components</text>
+  <text x="490" y="678" text-anchor="middle" font-size="11" fill="#94a3b8">Button · Card · Badge · Dialog · Skeleton · Accordion  (src/components/ui/)</text>
+
+  <!-- Global Layout -->
+  <rect x="60" y="722" width="860" height="52" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="490" y="741" text-anchor="middle" font-size="12" font-weight="700" fill="white">Global Layout</text>
+  <text x="490" y="758" text-anchor="middle" font-size="11" fill="#94a3b8">SiteNav · SiteFooter · FloatingChatLauncher  (src/components/layout/)</text>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- ARROWS: Landing → children -->
+  <line x1="420" y1="142" x2="175" y2="210" stroke="#05aba5" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="450" y1="142" x2="350" y2="210" stroke="#05aba5" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="490" y1="142" x2="520" y2="210" stroke="#05aba5" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="540" y1="142" x2="710" y2="210" stroke="#05aba5" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- Search → /hospital/[id] -->
+  <line x1="135" y1="262" x2="135" y2="360" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+  <!-- Search → /api/search -->
+  <line x1="185" y1="236" x2="265" y2="360" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+
+  <!-- Chat → /api/chat -->
+  <line x1="335" y1="262" x2="490" y2="360" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+
+  <!-- Hospital detail → /api/book -->
+  <line x1="220" y1="386" x2="660" y2="386" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+
+  <!-- /api/book → My Bookings (result stored) -->
+  <line x1="740" y1="412" x2="735" y2="262" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+
+  <!-- API routes → Data -->
+  <line x1="340" y1="412" x2="230" y2="500" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="355" y1="412" x2="350" y2="500" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="540" y1="412" x2="518" y2="500" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="740" y1="412" x2="170" y2="500" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <!-- /api/chat → OpenAI -->
+  <line x1="590" y1="386" x2="630" y2="500" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- Data → Shared UI (visual connection) -->
+  <line x1="490" y1="552" x2="490" y2="640" stroke="#475569" stroke-width="1.2" stroke-dasharray="4,4" marker-end="url(#arr5)"/>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- Arrow marker definitions -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#05aba5"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arr4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#10b981"/>
+    </marker>
+    <marker id="arr5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- ─────────────────────────────────────────────── -->
+  <!-- Legend -->
+  <rect x="870" y="90" width="195" height="230" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="967" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">Legend</text>
+
+  <rect x="886" y="124" width="14" height="14" rx="3" fill="#05aba5"/>
+  <text x="908" y="136" font-size="11" fill="#334155">Page / Route</text>
+
+  <rect x="886" y="148" width="14" height="14" rx="3" fill="#0f766e"/>
+  <text x="908" y="160" font-size="11" fill="#334155">Primary Page</text>
+
+  <rect x="886" y="172" width="14" height="14" rx="3" fill="#1e40af"/>
+  <text x="908" y="184" font-size="11" fill="#334155">Detail Page</text>
+
+  <rect x="886" y="196" width="14" height="14" rx="3" fill="#6d28d9"/>
+  <text x="908" y="208" font-size="11" fill="#334155">API Route Handler</text>
+
+  <rect x="886" y="220" width="14" height="14" rx="3" fill="#b45309"/>
+  <text x="908" y="232" font-size="11" fill="#334155">JSON Data Source</text>
+
+  <rect x="886" y="244" width="14" height="14" rx="3" fill="#065f46"/>
+  <text x="908" y="256" font-size="11" fill="#334155">External / AI Service</text>
+
+  <rect x="886" y="268" width="14" height="14" rx="3" fill="#1e293b"/>
+  <text x="908" y="280" font-size="11" fill="#334155">Layout / Shared UI</text>
+
+  <!-- Arrow legend lines -->
+  <line x1="886" y1="300" x2="914" y2="300" stroke="#05aba5" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="920" y="304" font-size="11" fill="#334155">Navigation</text>
+
+  <line x1="886" y1="318" x2="914" y2="318" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="920" y="322" font-size="11" fill="#334155">Data / API call</text>
+</svg>

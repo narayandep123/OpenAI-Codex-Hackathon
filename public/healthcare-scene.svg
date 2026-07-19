@@ -1,0 +1,29 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#EFF8FB"/>
+  <path d="M0 820C220 760 420 920 640 860C860 800 980 640 1210 660C1390 675 1490 720 1600 760V1000H0V820Z" fill="#DFF4FA"/>
+  <path d="M140 760H470V1000H140V760Z" fill="#CDECF6"/>
+  <rect x="200" y="350" width="350" height="430" rx="20" fill="#FFFFFF"/>
+  <rect x="255" y="430" width="90" height="90" rx="12" fill="#D9F2F9"/>
+  <rect x="365" y="430" width="90" height="90" rx="12" fill="#D9F2F9"/>
+  <rect x="255" y="550" width="90" height="90" rx="12" fill="#D9F2F9"/>
+  <rect x="365" y="550" width="90" height="90" rx="12" fill="#D9F2F9"/>
+  <rect x="315" y="250" width="120" height="120" rx="24" fill="#26B7D8"/>
+  <rect x="360" y="280" width="30" height="60" rx="6" fill="#FFFFFF"/>
+  <rect x="345" y="295" width="60" height="30" rx="6" fill="#FFFFFF"/>
+  <rect x="900" y="300" width="450" height="430" rx="26" fill="#FFFFFF"/>
+  <rect x="950" y="380" width="120" height="120" rx="16" fill="#EAF7FB"/>
+  <rect x="1090" y="380" width="120" height="120" rx="16" fill="#EAF7FB"/>
+  <rect x="1230" y="380" width="70" height="120" rx="16" fill="#EAF7FB"/>
+  <rect x="950" y="530" width="120" height="120" rx="16" fill="#EAF7FB"/>
+  <rect x="1090" y="530" width="120" height="120" rx="16" fill="#EAF7FB"/>
+  <rect x="1230" y="530" width="70" height="120" rx="16" fill="#EAF7FB"/>
+  <circle cx="760" cy="770" r="140" fill="#FFFFFF"/>
+  <circle cx="760" cy="710" r="44" fill="#26B7D8"/>
+  <rect x="700" y="760" width="120" height="180" rx="52" fill="#26B7D8"/>
+  <rect x="675" y="780" width="44" height="120" rx="20" fill="#26B7D8"/>
+  <rect x="801" y="780" width="44" height="120" rx="20" fill="#26B7D8"/>
+  <path d="M600 620C640 620 640 560 680 560C720 560 720 640 760 640C800 640 800 520 840 520C880 520 880 620 920 620" stroke="#1AA7C7" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1240" cy="180" r="68" fill="#C9EEF8"/>
+  <circle cx="1360" cy="120" r="42" fill="#DDF4FA"/>
+  <circle cx="1160" cy="120" r="34" fill="#DDF4FA"/>
+</svg>

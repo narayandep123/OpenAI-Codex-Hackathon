@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Knee Replacement",
+    "typicalMinPrice": 180000,
+    "typicalMaxPrice": 450000
+  },
+  {
+    "name": "Cataract Surgery",
+    "typicalMinPrice": 25000,
+    "typicalMaxPrice": 120000
+  },
+  {
+    "name": "Appendectomy",
+    "typicalMinPrice": 60000,
+    "typicalMaxPrice": 180000
+  },
+  {
+    "name": "Cardiac Bypass",
+    "typicalMinPrice": 220000,
+    "typicalMaxPrice": 600000
+  },
+  {
+    "name": "Gallbladder Removal",
+    "typicalMinPrice": 70000,
+    "typicalMaxPrice": 220000
+  },
+  {
+    "name": "Hip Replacement",
+    "typicalMinPrice": 200000,
+    "typicalMaxPrice": 500000
+  },
+  {
+    "name": "Hernia Repair",
+    "typicalMinPrice": 50000,
+    "typicalMaxPrice": 170000
+  },
+  {
+    "name": "Cesarean Section",
+    "typicalMinPrice": 80000,
+    "typicalMaxPrice": 250000
+  },
+  {
+    "name": "Dental Implant",
+    "typicalMinPrice": 30000,
+    "typicalMaxPrice": 120000
+  },
+  {
+    "name": "Spine Decompression",
+    "typicalMinPrice": 180000,
+    "typicalMaxPrice": 550000
+  }
+]

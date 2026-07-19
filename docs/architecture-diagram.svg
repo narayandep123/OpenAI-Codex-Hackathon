@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SurgiFind Architecture Diagram</title>
+  <desc id="desc">High level architecture flow showing browser, Next.js UI, APIs, Supabase, and OpenAI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#eef7f7"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f9fb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .section { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 600 15px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 400 13px Arial, sans-serif; fill: #475569; }
+      .box { fill: url(#box); stroke: #cbd5e1; stroke-width: 2; rx: 22; ry: 22; filter: url(#shadow); }
+      .group { fill: rgba(255,255,255,0.55); stroke: #dbe7ea; stroke-width: 2; rx: 28; ry: 28; }
+      .line { stroke: #0f766e; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .line-soft { stroke: #94a3b8; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .pill { fill: #dff7f4; stroke: #99e2da; stroke-width: 1.5; rx: 999; ry: 999; }
+      .pill-text { font: 700 13px Arial, sans-serif; fill: #0f766e; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#bg)"/>
+
+  <text x="70" y="70" class="title">SurgiFind Architecture Flow</text>
+  <text x="70" y="102" class="subtitle">Next.js app router frontend, Supabase-backed APIs, authenticated booking, and AI-assisted search.</text>
+
+  <!-- User -->
+  <rect x="90" y="170" width="190" height="90" class="box"/>
+  <text x="125" y="205" class="label">User Browser</text>
+  <text x="125" y="228" class="small">Landing, search, chat</text>
+  <text x="125" y="248" class="small">booking, bookings</text>
+
+  <!-- Frontend -->
+  <rect x="340" y="140" width="360" height="300" class="group"/>
+  <text x="370" y="175" class="section">Frontend Layer</text>
+  <rect x="375" y="205" width="290" height="78" class="box"/>
+  <text x="405" y="238" class="label">Next.js App Router UI</text>
+  <text x="405" y="260" class="small">src/app + src/components</text>
+  <rect x="375" y="305" width="290" height="78" class="box"/>
+  <text x="405" y="338" class="label">Supabase Browser Client</text>
+  <text x="405" y="360" class="small">Sign in, auth state, session</text>
+
+  <!-- Backend -->
+  <rect x="760" y="120" width="380" height="360" class="group"/>
+  <text x="790" y="155" class="section">Backend Layer</text>
+  <rect x="795" y="185" width="310" height="70" class="box"/>
+  <text x="825" y="217" class="label">/api/search</text>
+  <text x="825" y="239" class="small">catalog search and filters</text>
+  <rect x="795" y="270" width="310" height="70" class="box"/>
+  <text x="825" y="302" class="label">/api/chat</text>
+  <text x="825" y="324" class="small">intent detection and symptom flow</text>
+  <rect x="795" y="355" width="310" height="70" class="box"/>
+  <text x="825" y="387" class="label">/api/book</text>
+  <text x="825" y="409" class="small">reserve slot and store booking</text>
+
+  <!-- Shared lib -->
+  <rect x="1180" y="180" width="330" height="170" class="group"/>
+  <text x="1210" y="214" class="section">Shared Server Logic</text>
+  <rect x="1215" y="242" width="260" height="76" class="box"/>
+  <text x="1245" y="274" class="label">src/lib/search.ts</text>
+  <text x="1245" y="296" class="small">catalog reads, filters, lookup</text>
+
+  <!-- Data layer -->
+  <rect x="1160" y="420" width="370" height="310" class="group"/>
+  <text x="1190" y="455" class="section">Supabase Data Layer</text>
+  <rect x="1185" y="480" width="150" height="70" class="box"/>
+  <text x="1210" y="512" class="label">hospitals</text>
+  <text x="1210" y="534" class="small">catalog</text>
+  <rect x="1355" y="480" width="150" height="70" class="box"/>
+  <text x="1380" y="512" class="label">surgeries</text>
+  <text x="1380" y="534" class="small">master list</text>
+  <rect x="1185" y="570" width="150" height="70" class="box"/>
+  <text x="1210" y="602" class="label">hospital_slots</text>
+  <text x="1210" y="624" class="small">availability</text>
+  <rect x="1355" y="570" width="150" height="70" class="box"/>
+  <text x="1380" y="602" class="label">bookings</text>
+  <text x="1380" y="624" class="small">user records</text>
+  <rect x="1268" y="660" width="150" height="70" class="box"/>
+  <text x="1290" y="692" class="label">insurance_plans</text>
+  <text x="1290" y="714" class="small">coverage</text>
+
+  <!-- AI -->
+  <rect x="760" y="540" width="320" height="145" class="group"/>
+  <text x="790" y="575" class="section">OpenAI</text>
+  <rect x="795" y="602" width="250" height="60" class="box"/>
+  <text x="825" y="636" class="label">Chat assistant reasoning</text>
+
+  <!-- Flows -->
+  <path d="M280 215 C320 215, 320 215, 375 245" class="line"/>
+  <path d="M665 244 C725 244, 725 215, 795 220" class="line"/>
+  <path d="M665 344 C725 344, 725 300, 795 305" class="line"/>
+  <path d="M665 392 C725 392, 725 390, 795 390" class="line"/>
+  <path d="M1110 220 C1160 220, 1160 270, 1215 280" class="line-soft"/>
+  <path d="M1110 305 C1160 305, 1160 270, 1215 280" class="line-soft"/>
+  <path d="M1110 390 C1150 390, 1150 540, 1185 515" class="line-soft"/>
+  <path d="M1110 630 C1140 630, 1140 635, 1185 605" class="line-soft"/>
+  <path d="M1110 630 C1140 630, 1140 605, 795 635" class="line-soft"/>
+
+  <!-- Legend -->
+  <rect x="90" y="320" width="190" height="140" class="group"/>
+  <text x="112" y="352" class="section">Legend</text>
+  <rect x="112" y="372" width="74" height="26" class="pill"/>
+  <text x="124" y="390" class="pill-text">UI</text>
+  <rect x="112" y="408" width="74" height="26" class="pill"/>
+  <text x="124" y="426" class="pill-text">API</text>
+  <text x="112" y="455" class="small">Arrows show</text>
+  <text x="112" y="472" class="small">request/data flow</text>
+</svg>
